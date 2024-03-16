@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Text description ###
+info.txt
+info2.txt

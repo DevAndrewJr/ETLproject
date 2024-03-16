@@ -1,7 +1,11 @@
-package it.projects.h2project.exception;
+package it.projects.h2project.config;
 
 import it.projects.h2project.entity.*;
 
+import it.projects.h2project.exception.DuplicateProductCodeException;
+import it.projects.h2project.exception.ProductIllegalArgumentException;
+import it.projects.h2project.exception.ProductNotFoundException;
+import it.projects.h2project.exception.ProductSaveException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
