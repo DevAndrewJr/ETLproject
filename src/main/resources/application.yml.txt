@@ -1,18 +1,23 @@
 # Main Database
 spring:
   datasource:
-    url: jdbc:sqlserver://192.168.178.50\SQLEXPRESS:1433;databaseName=ETLprojectDB;encrypt=false
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:h2:file:D:/H2DB/H2_DB_ProjectFiles
+    driverClassName: org.h2.Driver
     username: sa
-    password: Andreas.1974
+    password: andreas
   jpa:
-    database-platform: org.hibernate.dialect.SQLServerDialect
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
+      # create-drop
+      ddl-auto: none
 
+  # H2 Console http://localhost:8080/h2-project
+  h2:
+    console:
+      enabled: true
+      path: /h2-project
+
+    # Strategy for model naming
+    hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-
-
-
-
-
