@@ -61,8 +61,11 @@ public class ProductService {
             }
     }
 
-    public Object alfanumericCode(){
-        int randomNumber = (int) Math.random() * 50000;
+    public String alfanumericCode(){
+
+        Random random = new Random();
+        int randomNumber = random.nextInt(1000000);
+
         String randomNumberString = Integer.toString(randomNumber);
         String code = "ITEM-" + randomNumberString;
         return code;
@@ -72,8 +75,8 @@ public class ProductService {
         try {
 
             // Generate alfanumeric code
-            String code = (String) alfanumericCode();
-            product.setCode(code);
+            String codeId = (String) alfanumericCode();
+            product.setCode(codeId);
 
             if (product == null || product.getCode() == null || product.getCode().isEmpty() || product.getNameProduct() == null || product.getNameProduct().isEmpty()) {
                 throw new ProductIllegalArgumentException("Product name or code cannot be null or empty");
