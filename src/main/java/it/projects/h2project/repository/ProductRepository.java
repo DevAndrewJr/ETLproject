@@ -17,8 +17,4 @@ public interface ProductRepository extends JpaRepository<Product, String> {
     Optional< List<Product> > findAllByDescriptionContainingIgnoreCase(String searchText);
 
     Optional< Product > findByCodeContainingIgnoreCase(String code);
-
-    Product saveProduct(Product product);
-
-
 }

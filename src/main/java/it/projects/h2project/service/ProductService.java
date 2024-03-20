@@ -61,6 +61,13 @@ public class ProductService {
             }
     }
 
+    public Object alfanumericCode(){
+        Double randomNumber = Math.random() * 50000;
+        String randomNumberString = Double.toString(randomNumber);
+        String code = "ITEM-" + randomNumberString;
+        return code;
+    }
+
     public Product saveProduct(Product product) {
         try {
 
@@ -85,10 +92,5 @@ public class ProductService {
         }
     }
 
-    public Object alfanumericCode(){
-        Double randomNumber = Math.random() * 50000;
-        String randomNumberString = Double.toString(randomNumber);
-        String code = "ITEM-" + randomNumberString;
-        return code;
-    }
+
 }

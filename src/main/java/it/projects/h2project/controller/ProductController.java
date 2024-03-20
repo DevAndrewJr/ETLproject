@@ -45,7 +45,7 @@ public class ProductController {
     public ResponseEntity< ? > saveProduct (@RequestBody Product product){
 
             Product saveProduct = productService.saveProduct(product);
-            return ResponseEntity.status(HttpStatus.OK).body("Product created successfully with id " + saveProduct.getCode());
+            return ResponseEntity.status(HttpStatus.OK).body("Product created successfully with code " + saveProduct.getCode());
         }
 
 }
