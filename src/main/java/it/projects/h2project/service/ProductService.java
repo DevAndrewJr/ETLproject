@@ -32,13 +32,13 @@ public class ProductService {
     }
 
 
-    public Product getProductById(int id) {
-        Optional< Product > productOptional = productRepository.findById(id);
+    public Product getProductById(String code) {
+        Optional< Product > productOptional = productRepository.findById(code);
         try {
             if (productOptional.isPresent() && !productOptional.isEmpty()) {
                 return productOptional.get();
             } else {
-                throw new ProductNotFoundException("Product " + id + " is not present");
+                throw new ProductNotFoundException("Product " + code + " is not present");
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -60,7 +60,6 @@ public class ProductService {
                 throw e;
             }
     }
-
 
     public Product saveProduct(Product product) {
         try {

@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, String> {
     Optional< List<Product> > findAllByDescriptionContainingIgnoreCase(String searchText);
 
     Optional< Product > findByCodeContainingIgnoreCase(String code);
 
-    Optional<Product> findById(Integer id);
+    Optional<Product> findById(String code);
 
     List<Product> findAll();
+
+
 }

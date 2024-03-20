@@ -2,7 +2,6 @@ package it.projects.h2project.controller;
 
 import it.projects.h2project.entity.*;
 import it.projects.h2project.service.*;
-import it.projects.h2project.exception.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
@@ -25,11 +24,11 @@ public class ProductController {
     }
 
 
-    @GetMapping(value = "/get/{id}", produces="application/json")
+    @GetMapping(value = "/get/{code}", produces="application/json")
     @ResponseBody
-    public ResponseEntity< ? > getProductById(@PathVariable ("id") int id){
+    public ResponseEntity< ? > getProductById(@PathVariable ("code") String code){
 
-            Product product = productService.getProductById(id);
+            Product product = productService.getProductById(code);
             return ResponseEntity.ok(product);
     }
 
@@ -46,7 +45,7 @@ public class ProductController {
     public ResponseEntity< ? > saveProduct (@RequestBody Product product){
 
             Product saveProduct = productService.saveProduct(product);
-            return ResponseEntity.status(HttpStatus.OK).body("Product created successfully with id " + saveProduct.getId());
+            return ResponseEntity.status(HttpStatus.OK).body("Product created successfully with id " + saveProduct.getCode());
         }
 
 }
