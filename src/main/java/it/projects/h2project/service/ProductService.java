@@ -62,8 +62,8 @@ public class ProductService {
     }
 
     public Object alfanumericCode(){
-        Double randomNumber = Math.random() * 50000;
-        String randomNumberString = Double.toString(randomNumber);
+        int randomNumber = (int) Math.random() * 50000;
+        String randomNumberString = Integer.toString(randomNumber);
         String code = "ITEM-" + randomNumberString;
         return code;
     }
@@ -71,13 +71,13 @@ public class ProductService {
     public Product saveProduct(Product product) {
         try {
 
-            if (product == null || product.getCode() == null || product.getCode().isEmpty() || product.getNameProduct() == null || product.getNameProduct().isEmpty()) {
-                throw new ProductIllegalArgumentException("Product name or code cannot be null or empty");
-            }
-
             // Generate alfanumeric code
             String code = (String) alfanumericCode();
             product.setCode(code);
+
+            if (product == null || product.getCode() == null || product.getCode().isEmpty() || product.getNameProduct() == null || product.getNameProduct().isEmpty()) {
+                throw new ProductIllegalArgumentException("Product name or code cannot be null or empty");
+            }
 
             Optional<Product> existingProduct = productRepository.findByCodeContainingIgnoreCase(product.getCode());
             if (existingProduct.isPresent()) {
