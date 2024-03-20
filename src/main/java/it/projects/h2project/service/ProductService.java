@@ -62,9 +62,9 @@ public class ProductService {
     }
 
     public Object alfanumericCode(){
-        Double randomNumber = Math.random() * 5000;
+        Double randomNumber = Math.random() * 50000;
         String randomNumberString = Double.toString(randomNumber);
-        String code = "Item-" + randomNumberString;
+        String code = "ITEM-" + randomNumberString;
         return code;
     }
 
