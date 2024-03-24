@@ -1,4 +1,4 @@
-package it.projects.h2project;
+package it.projects.SQLserverProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

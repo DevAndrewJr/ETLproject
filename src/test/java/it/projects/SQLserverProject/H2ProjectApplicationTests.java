@@ -1,4 +1,4 @@
-package it.projects.h2project;
+package it.projects.SQLserverProject;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

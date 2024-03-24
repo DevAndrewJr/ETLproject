@@ -1,8 +1,8 @@
-package it.projects.h2project.service;
+package it.projects.SQLserverProject.service;
 
-import it.projects.h2project.entity.*;
-import it.projects.h2project.exception.*;
-import it.projects.h2project.repository.*;
+import it.projects.SQLserverProject.entity.*;
+import it.projects.SQLserverProject.exception.*;
+import it.projects.SQLserverProject.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

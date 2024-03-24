@@ -1,7 +1,7 @@
-package it.projects.h2project.controller;
+package it.projects.SQLserverProject.controller;
 
-import it.projects.h2project.entity.*;
-import it.projects.h2project.service.*;
+import it.projects.SQLserverProject.entity.*;
+import it.projects.SQLserverProject.service.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;

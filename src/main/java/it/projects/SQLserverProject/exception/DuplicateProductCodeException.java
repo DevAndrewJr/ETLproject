@@ -1,9 +1,6 @@
-package it.projects.h2project.exception;
+package it.projects.SQLserverProject.exception;
 
 import lombok.experimental.StandardException;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @StandardException
 public class DuplicateProductCodeException extends RuntimeException {

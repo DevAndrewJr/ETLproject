@@ -1,4 +1,4 @@
-package it.projects.h2project.entity;
+package it.projects.SQLserverProject.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

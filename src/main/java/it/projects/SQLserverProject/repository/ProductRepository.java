@@ -1,6 +1,6 @@
-package it.projects.h2project.repository;
+package it.projects.SQLserverProject.repository;
 
-import it.projects.h2project.entity.Product;
+import it.projects.SQLserverProject.entity.Product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
