@@ -48,7 +48,7 @@ installation prerequisite:
 - Follow the installation wizard, specifying configurations such as instance name, 
   authentication mode, and data directories.
 - Complete the SQL Server installation process.
-- 
+
 By following these steps, you have installed VMware Workstation Pro as a hypervisor on Windows 11, 
 created a VM with Windows Server 2022, configured networking for the VM to use a Bridged connection, 
 and installed SQL Server on the Windows Server 2022 VM.
