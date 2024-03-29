@@ -1,6 +1,58 @@
 # Extract transform load
 Data transformation service
 
+Windows Server
+installation prerequisite:
+
+## Installation prerequisite:
+- VMWare Player or Workstation Pro
+- A version of Windows Server not older than version 2012 R2
+
+## Installing VMware Workstation Pro as a Hypervisor on Windows 10/11
+
+### 1. Download and Installation:
+
+- Download the VMware Workstation Pro installer from the official website.
+- Double-click the downloaded file to start the installation process.
+- Follow the on-screen instructions to complete the installation.
+- Once installed, launch VMware Workstation Pro.
+
+### 2. Creating a Virtual Machine (VM):
+
+- Click on "Create a New Virtual Machine" option in VMware Workstation Pro.
+- Select "Typical" configuration for the VM creation process.
+- Choose "Installer disc image file (iso)" and browse to the location of the Windows Server 2022 ISO file.
+- Proceed with the VM creation wizard, specifying parameters like disk size, RAM, CPU cores, etc.
+- Complete the VM creation process by clicking "Finish".
+
+### 3. Installing Windows Server 2022:
+
+- Start the newly created VM.
+- Follow the prompts to boot from the Windows Server 2022 ISO.
+- Install Windows Server 2022 by following the on-screen instructions, 
+  including entering the product key and configuring settings.
+
+### 4. Configuring Networking (Bridged Connection):
+
+- In VMware Workstation Pro, select the VM you created.
+- Go to the VM settings.
+- Choose the "Network Adapter" option.
+- Select "Bridged" mode for networking.
+- Save the settings.
+
+### 5. Installing SQL Server:
+
+- Once Windows Server 2022 is installed and network settings are configured, 
+  download the SQL Server installation files.
+- Run the SQL Server installer on the Windows Server 2022 VM.
+- Follow the installation wizard, specifying configurations such as instance name, 
+  authentication mode, and data directories.
+- Complete the SQL Server installation process.
+- 
+By following these steps, you have installed VMware Workstation Pro as a hypervisor on Windows 11, 
+created a VM with Windows Server 2022, configured networking for the VM to use a Bridged connection, 
+and installed SQL Server on the Windows Server 2022 VM.
+
 
 ##  Enable Remote Connections to SQL Server
 To allow remote connections to the SQL Server, follow these steps:
