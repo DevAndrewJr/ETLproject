@@ -2,7 +2,7 @@ package it.projects.SQLserverProject.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.sql.Timestamp;
+import java.sql.*;
 
 
 
