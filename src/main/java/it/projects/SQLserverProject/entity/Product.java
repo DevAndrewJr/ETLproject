@@ -5,7 +5,6 @@ import lombok.*;
 import java.sql.*;
 
 
-
 @Data
 @Entity
 @Table(name="product")
