@@ -18,8 +18,8 @@ public class JsonPlaceholderUserController {
     private FetchJsonPlaceholderUserService fetchJsonPlaceholderUserService;
 
     @GetMapping(value = "/user/list", produces="application/json")
-
-    public @ResponseBody ResponseEntity< ? > getList() throws JsonProcessingException{
+    @ResponseBody
+    public ResponseEntity< ? > getList() throws JsonProcessingException{
 
         List< JsonPlaceholderUser > jsonList = fetchJsonPlaceholderUserService.fetchUserList();
 
