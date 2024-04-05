@@ -1,6 +1,8 @@
 package it.projects.SQLserverProject.dto;
 
 import lombok.*;
+
+@Data
 public class JsonPlaceholderCompany {
 
     private String name;

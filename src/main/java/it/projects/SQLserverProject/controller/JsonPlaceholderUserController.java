@@ -10,13 +10,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/project/api/json")
 public class JsonPlaceholderUserController {
 
     @Autowired
     private FetchJsonPlaceholderUserService fetchJsonPlaceholderUserService;
 
-    @GetMapping(value = "/get/list", produces="application/json")
+    @GetMapping(value = "user/list", produces="application/json")
     @ResponseBody
     public ResponseEntity<JsonPlaceholderUser> getList() throws JsonProcessingException{
 
@@ -25,7 +25,7 @@ public class JsonPlaceholderUserController {
         return ResponseEntity.accepted().body(jsonList);
     }
 
-    @GetMapping(value="/get/{id}", produces = "application/json")
+    @GetMapping(value="user/get:{id}", produces = "application/json")
     @ResponseBody
     public ResponseEntity<JsonPlaceholderUser> getUserById(@PathVariable("id") int id) throws  JsonProcessingException {
 
