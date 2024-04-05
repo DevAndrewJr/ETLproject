@@ -79,10 +79,4 @@ public List<JsonPlaceholderUser> fetchUserList(){
     }
 
 
-
-
-
-
-
-
 }

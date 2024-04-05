@@ -14,4 +14,5 @@ public class JsonPlaceholderUser {
     private String website;
     private JsonPlaceholderCompany company;
 
+
 }
