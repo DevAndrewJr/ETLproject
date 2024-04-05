@@ -1,6 +1,5 @@
 package it.projects.SQLserverProject.dto;
 
-
 import lombok.*;
 
 @Data
