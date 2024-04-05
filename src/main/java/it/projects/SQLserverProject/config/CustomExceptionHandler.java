@@ -2,10 +2,7 @@ package it.projects.SQLserverProject.config;
 
 import it.projects.SQLserverProject.entity.*;
 
-import it.projects.SQLserverProject.exception.DuplicateProductCodeException;
-import it.projects.SQLserverProject.exception.ProductIllegalArgumentException;
-import it.projects.SQLserverProject.exception.ProductNotFoundException;
-import it.projects.SQLserverProject.exception.ProductSaveException;
+import it.projects.SQLserverProject.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,6 +34,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ProductSaveException.class)
     public ResponseEntity<String> handleProductSaveException(ProductSaveException e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+    }
+
+    @ExceptionHandler(JsonPlaceholderUserListNotFoundException.class)
+    public ResponseEntity<String> handleJsonPlaceholderUserListNotFoundException(JsonPlaceholderUserListNotFoundException e){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
 }
