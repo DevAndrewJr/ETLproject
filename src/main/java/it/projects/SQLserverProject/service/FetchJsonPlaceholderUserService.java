@@ -1,25 +1,26 @@
 package it.projects.SQLserverProject.service;
 
-import com.fasterxml.jackson.databind.*;
 import it.projects.SQLserverProject.dto.*;
 import it.projects.SQLserverProject.exception.*;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.*;
-import org.springframework.web.client.RestTemplate;
-
+import org.springframework.web.client.*;
+import com.fasterxml.jackson.databind.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class FetchJsonPlaceholderUserService {
 
-public List<JsonPlaceholderUser> fetchListUsers(){
+
+
+
+public List<JsonPlaceholderUser> fetchUserList(){
 
     // build rest template object
     RestTemplate restTemplate = new RestTemplate();
     String url = "https://jsonplaceholder.typicode.com/users";
-
 
     // rest call
     ResponseEntity< Object[] > response = restTemplate.getForEntity(url, Object[].class);
@@ -32,11 +33,11 @@ public List<JsonPlaceholderUser> fetchListUsers(){
 
     // Return data variables
     try {
-        List< JsonPlaceholderUser > jsonPlaceholderUserList = new ArrayList<>();
-
-        if (jsonPlaceholderUserList.isEmpty()){
+        if (objects == null || objects.length == 0) {
             throw new JsonPlaceholderUserListNotFoundException("Json placeholder users list not found");
         }
+
+        List< JsonPlaceholderUser > jsonPlaceholderUserList = new ArrayList<>();
 
         for (int i = 0; i < objects.length; i++) {
             jsonPlaceholderUserList.add(mapper.convertValue(objects[i], JsonPlaceholderUser.class));
@@ -47,36 +48,38 @@ public List<JsonPlaceholderUser> fetchListUsers(){
             e.printStackTrace();
             throw e;
         }
+
     }
 
 
-    public JsonPlaceholderUser fetchUserById(int userId) {
+
+    public JsonPlaceholderUser fetchUserById(int id) {
 
         // Build an URL with user id
-        String url = "https://jsonplaceholder.typicode.com/users/" + userId;
+        String url = "https://jsonplaceholder.typicode.com/users/" + id;
 
         // Create the object RestTemplate
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-            List< JsonPlaceholderUser > jsonPlaceholderUser = new ArrayList<>();
+            ResponseEntity< JsonPlaceholderUser > response = restTemplate.getForEntity(url, JsonPlaceholderUser.class);
 
-            // Run the REST call for getting the specified user from id
-            ResponseEntity<JsonPlaceholderUser> response = restTemplate.getForEntity(url, JsonPlaceholderUser.class);
-
-            if (jsonPlaceholderUser.isEmpty()){
-                throw new JsonPlaceholderUserNotFoundException("Json placeholder users not found");
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return response.getBody();
+            } else {
+                throw new JsonPlaceholderUserNotFoundException("Json placeholder user with id " + id + " not found");
             }
-
-            // Return the user from response
-            return response.getBody();
+        }catch(HttpClientErrorException.NotFound e) {
+            throw new JsonPlaceholderUserNotFoundException("Json placeholder user with id " + id + " not found", e);
         }catch(Exception e){
             e.printStackTrace();
             throw e;
         }
 
-
     }
+
+
+
 
 
 

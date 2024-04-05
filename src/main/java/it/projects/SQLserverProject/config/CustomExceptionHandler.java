@@ -41,4 +41,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handleJsonPlaceholderUserListNotFoundException(JsonPlaceholderUserListNotFoundException e){
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
     }
+
+    @ExceptionHandler(JsonPlaceholderUserNotFoundException.class)
+    public ResponseEntity<String> handleJsonPlaceholderUserNotFoundException(JsonPlaceholderUserNotFoundException e){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+    }
+
 }
