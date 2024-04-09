@@ -23,7 +23,6 @@ public class ProductController {
         return ResponseEntity.ok(product); // return response 200 ok
     }
 
-
     @GetMapping(value = "/get/{code}", produces="application/json")
     @ResponseBody
     public ResponseEntity< ? > getProductById(@PathVariable ("code") String code){

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.*;
 
-
 @RestController
 @RequestMapping("/project/api/json")
 public class JsonPlaceholderUserController {
@@ -31,8 +30,7 @@ public class JsonPlaceholderUserController {
     @ResponseBody
     public JsonPlaceholderUser getUserById(@PathVariable("id") int id) throws  JsonProcessingException {
 
-        JsonPlaceholderUser jsonUser = (JsonPlaceholderUser) fetchJsonPlaceholderUserService.fetchUserById(id);
+        JsonPlaceholderUser jsonUser = fetchJsonPlaceholderUserService.fetchUserById(id);
         return jsonUser;
     }
-
 }

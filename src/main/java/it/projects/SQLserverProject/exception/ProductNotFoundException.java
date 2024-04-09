@@ -9,6 +9,4 @@ public class ProductNotFoundException extends RuntimeException {
         super(message);
     }
 
-
-
 }

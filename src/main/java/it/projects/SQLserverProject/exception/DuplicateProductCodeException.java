@@ -9,6 +9,4 @@ public class DuplicateProductCodeException extends RuntimeException {
         super(message);
 
     }
-
-
 }

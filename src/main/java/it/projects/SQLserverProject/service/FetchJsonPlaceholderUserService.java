@@ -14,8 +14,6 @@ import java.util.List;
 public class FetchJsonPlaceholderUserService {
 
 
-
-
 public List<JsonPlaceholderUser> fetchUserList(){
 
     // build rest template object
@@ -77,6 +75,4 @@ public List<JsonPlaceholderUser> fetchUserList(){
         }
 
     }
-
-
 }
