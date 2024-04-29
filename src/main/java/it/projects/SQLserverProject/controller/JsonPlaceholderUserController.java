@@ -36,9 +36,9 @@ public class JsonPlaceholderUserController {
 
     @GetMapping(value="user/search/{name}", produces = "application/json")
     @ResponseBody
-    public ResponseEntity< ? > searchName(@PathVariable("searchText") String searchText) throws JsonProcessingException{
+    public ResponseEntity< ? > searchName(@PathVariable("name") String searchName) throws JsonProcessingException{
 
-        List<JsonPlaceholderUser> jsonSearch = fetchJsonPlaceholderUserService.findAllByNameContainingIgnoreCase(searchText);
-        return ResponseEntity.accepted().body(jsonSearch);
+        List<JsonPlaceholderUser> jsonNameSearch = fetchJsonPlaceholderUserService.findUserByName(searchName);
+        return ResponseEntity.accepted().body(jsonNameSearch);
     }
 }

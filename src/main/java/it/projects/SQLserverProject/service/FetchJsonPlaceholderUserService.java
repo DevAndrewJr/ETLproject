@@ -2,6 +2,7 @@ package it.projects.SQLserverProject.service;
 
 import it.projects.SQLserverProject.dto.*;
 import it.projects.SQLserverProject.exception.*;
+import it.projects.SQLserverProject.config.*;
 
 import it.projects.SQLserverProject.repository.*;
 import org.springframework.beans.factory.annotation.*;
@@ -16,8 +17,7 @@ import java.util.*;
 public class FetchJsonPlaceholderUserService {
 
     @Autowired
-    private JsonPlaceholderUserRepository jsonPlaceholderUserRepository;
-
+    private RestTemplate restTemplate;
 
     public List< JsonPlaceholderUser > fetchUserList() {
 
