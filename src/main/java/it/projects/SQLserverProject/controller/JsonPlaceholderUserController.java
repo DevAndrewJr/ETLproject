@@ -4,9 +4,9 @@ import it.projects.SQLserverProject.service.*;
 import it.projects.SQLserverProject.dto.*;
 
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.*;
 import java.util.*;
 
 @RestController
@@ -32,5 +32,13 @@ public class JsonPlaceholderUserController {
 
         JsonPlaceholderUser jsonUser = fetchJsonPlaceholderUserService.fetchUserById(id);
         return jsonUser;
+    }
+
+    @GetMapping(value="user/search/{name}", produces = "application/json")
+    @ResponseBody
+    public ResponseEntity< ? > searchName(@PathVariable("searchText") String searchText) throws JsonProcessingException{
+
+        List<JsonPlaceholderUser> jsonSearch = fetchJsonPlaceholderUserService.findAllByNameContainingIgnoreCase(searchText);
+        return ResponseEntity.accepted().body(jsonSearch);
     }
 }

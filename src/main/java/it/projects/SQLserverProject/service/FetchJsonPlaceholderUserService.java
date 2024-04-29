@@ -3,16 +3,20 @@ package it.projects.SQLserverProject.service;
 import it.projects.SQLserverProject.dto.*;
 import it.projects.SQLserverProject.exception.*;
 
-import org.springframework.http.ResponseEntity;
+import it.projects.SQLserverProject.repository.*;
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.client.*;
 import com.fasterxml.jackson.databind.*;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class FetchJsonPlaceholderUserService {
+
+    @Autowired
+    private JsonPlaceholderUserRepository jsonPlaceholderUserRepository;
 
 
     public List< JsonPlaceholderUser > fetchUserList() {
@@ -74,5 +78,41 @@ public class FetchJsonPlaceholderUserService {
             throw e;
         }
 
+    }
+
+    public List< JsonPlaceholderUser > findUserByName(String name) {
+
+        // Build an URL with user id
+        String url = "https://jsonplaceholder.typicode.com/users/";
+
+        // Create the object RestTemplate
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            ResponseEntity< JsonPlaceholderUser[] > response = restTemplate.getForEntity(url, JsonPlaceholderUser[].class);
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                // Retrieve the array of users from response
+                JsonPlaceholderUser[] users = response.getBody();
+
+                // Filter users by name
+                List< JsonPlaceholderUser > filteredUsers = new ArrayList<>();
+                for (JsonPlaceholderUser user : users) {
+                    if (user.getName().contains(name)) {
+                        filteredUsers.add(user);
+                    }
+                }
+                return filteredUsers;
+            } else {
+                throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API");
+            }
+
+
+        } catch (HttpClientErrorException.NotFound e) {
+             throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API\", e");
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }
     }
 }
