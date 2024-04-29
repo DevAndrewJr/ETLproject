@@ -2,9 +2,7 @@ package it.projects.SQLserverProject.service;
 
 import it.projects.SQLserverProject.dto.*;
 import it.projects.SQLserverProject.exception.*;
-import it.projects.SQLserverProject.config.*;
 
-import it.projects.SQLserverProject.repository.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.stereotype.*;
@@ -123,4 +121,92 @@ public class FetchJsonPlaceholderUserService {
             throw e;
         }
     }
+
+    public List< Map< String, Object > > getListPeople() {
+
+        // Build an URL with user id
+        String url = "https://jsonplaceholder.typicode.com/users/";
+
+        try{
+            ResponseEntity< JsonPlaceholderUser[] > response = restTemplate.getForEntity(url, JsonPlaceholderUser[].class);
+
+            // Retrieve the array of users from the response
+            Object[] objects = response.getBody();
+
+            // Mapping
+            ObjectMapper mapper = new ObjectMapper();
+
+            // List for containing results
+            List <Map <String, Object>> peopleList = new ArrayList<>();
+
+            // Checking if the user list is void
+            if (objects == null || objects.length == 0){
+                throw new JsonPlaceholderUserListNotFoundException("Json placeholder users list not found");
+            }
+
+            // Iterating users
+            for (Object obj : objects){
+
+                // Converting the object to a JsonPlaceholderUser
+                JsonPlaceholderUser user = mapper.convertValue(obj, JsonPlaceholderUser.class);
+
+                // Mapping for rappresenting the current user
+                Map<String, Object> userMap = new LinkedHashMap<>();
+
+                // Adding the name of the user as key
+                userMap.put(("id"), user.getId());
+                userMap.put("name", user.getName());
+                userMap.put("username", user.getUsername());
+                userMap.put("email", user.getEmail());
+                userMap.put("phone", user.getPhone());
+                userMap.put("website", user.getWebsite());
+
+                // Mapping for rappresenting the address user
+                Map<String, Object> addressMap = new LinkedHashMap<>();
+                JsonPlaceholderAddress address = user.getAddress();
+
+                // Adding the user address as key
+                addressMap.put(("street"), address.getStreet());
+                addressMap.put(("suite"), address.getSuite());
+                addressMap.put(("city"), address.getCity());
+                addressMap.put(("zipcode"), address.getZipcode());
+
+                // Mapping for rappresenting the geo of the street as key
+                Map<String, Object> geoMap = new LinkedHashMap<>();
+                JsonPlaceholderGeo geo = user.getAddress().getGeo();
+
+                // Adding the street geo as key
+                geoMap.put(("lat"), geo.getLat());
+                geoMap.put(("lng"), geo.getLng());
+
+                // Mapping for rappresenting the company of the user as key
+                Map<String, Object> companyMap = new LinkedHashMap<>();
+                JsonPlaceholderCompany company = user.getCompany();
+
+                // Adding the company user as key
+                companyMap.put(("name"), company.getName());
+                companyMap.put(("catchPhrase"), company.getCatchPhrase());
+                companyMap.put(("bs"), company.getBs());
+
+                // Adding object maps nested in the user's map
+
+                userMap.put("address", addressMap);
+                userMap.put("geo", geoMap);
+                userMap.put("company", companyMap);
+
+                // Adding the user map to the results list
+                peopleList.add(userMap);
+
+            }
+            return peopleList;
+
+        }catch(HttpClientErrorException.NotFound e){
+            throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API", e);
+        }catch(Exception e){
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+
 }
