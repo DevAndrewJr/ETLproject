@@ -10,6 +10,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.client.*;
 import com.fasterxml.jackson.databind.*;
+
 import java.util.*;
 
 
@@ -95,22 +96,29 @@ public class FetchJsonPlaceholderUserService {
                 // Retrieve the array of users from response
                 JsonPlaceholderUser[] users = response.getBody();
 
+                // Convert the search name to lowercase
+                String searchName = name.toLowerCase();
+
                 // Filter users by name
-                List< JsonPlaceholderUser > filteredUsers = new ArrayList<>();
+                List< JsonPlaceholderUser > matchedUsers = new ArrayList<>();
                 for (JsonPlaceholderUser user : users) {
-                    if (user.getName().contains(name)) {
-                        filteredUsers.add(user);
+
+                    // Convert the user name to lowercase for case-insensitive comparison
+                    String userNameLowerCase = user.getName().toLowerCase();
+
+                    if (userNameLowerCase.contains(searchName)) {
+                        matchedUsers.add(user);
                     }
                 }
-                return filteredUsers;
+                return matchedUsers;
             } else {
                 throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API");
             }
 
 
         } catch (HttpClientErrorException.NotFound e) {
-             throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API\", e");
-        }catch (Exception e){
+            throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API\", e");
+        } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }
