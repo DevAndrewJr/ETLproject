@@ -32,6 +32,7 @@ public class ProfileUserService {
                 ProfileUser profileUser = new ProfileUser();
 
                 // Imposta i campi del profilo utente dai dati della mappa
+                profileUser.setName((String) userMap.get("name"));
                 profileUser.setUsername((String) userMap.get("username"));
                 profileUser.setEmail((String) userMap.get("email"));
                 profileUser.setStreet((String) userMap.get("street"));
