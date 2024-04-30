@@ -8,8 +8,6 @@ import java.util.*;
 @Data
 public class JsonPlaceholderGeo {
 
-    private int geo;
-
     private String lat;
 
     private String lng;

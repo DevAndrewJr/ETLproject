@@ -8,8 +8,6 @@ import java.util.*;
 @Data
 public class JsonPlaceholderCompany {
 
-    private int id;
-
     private String name;
 
     private String catchPhrase;

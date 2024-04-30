@@ -8,7 +8,4 @@ import java.util.*;
 
 public interface ProfileUserRepository extends JpaRepository< ProfileUser, Integer> {
 
-
-
-
 }

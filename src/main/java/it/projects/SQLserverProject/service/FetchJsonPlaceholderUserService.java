@@ -54,75 +54,6 @@ public class FetchJsonPlaceholderUserService {
 
     }
 
-
-    public JsonPlaceholderUser fetchUserById(int id) {
-
-        // Build an URL with user id
-        String url = "https://jsonplaceholder.typicode.com/users/" + id;
-
-        // Create the object RestTemplate
-        RestTemplate restTemplate = new RestTemplate();
-
-        try {
-            ResponseEntity< JsonPlaceholderUser > response = restTemplate.getForEntity(url, JsonPlaceholderUser.class);
-
-            if (response.getStatusCode().is2xxSuccessful()) {
-                return response.getBody();
-            } else {
-                throw new JsonPlaceholderUserNotFoundException("Json placeholder user with id " + id + " not found");
-            }
-        } catch (HttpClientErrorException.NotFound e) {
-            throw new JsonPlaceholderUserNotFoundException("Json placeholder user with id " + id + " not found", e);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
-
-    }
-
-    public List< JsonPlaceholderUser > findUserByName(String name) {
-
-        // Build an URL with user id
-        String url = "https://jsonplaceholder.typicode.com/users/";
-
-        // Create the object RestTemplate
-        RestTemplate restTemplate = new RestTemplate();
-
-        try {
-            ResponseEntity< JsonPlaceholderUser[] > response = restTemplate.getForEntity(url, JsonPlaceholderUser[].class);
-
-            if (response.getStatusCode().is2xxSuccessful()) {
-                // Retrieve the array of users from response
-                JsonPlaceholderUser[] users = response.getBody();
-
-                // Convert the search name to lowercase
-                String searchName = name.toLowerCase();
-
-                // Filter users by name
-                List< JsonPlaceholderUser > matchedUsers = new ArrayList<>();
-                for (JsonPlaceholderUser user : users) {
-
-                    // Convert the user name to lowercase for case-insensitive comparison
-                    String userNameLowerCase = user.getName().toLowerCase();
-
-                    if (userNameLowerCase.contains(searchName)) {
-                        matchedUsers.add(user);
-                    }
-                }
-                return matchedUsers;
-            } else {
-                throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API");
-            }
-
-
-        } catch (HttpClientErrorException.NotFound e) {
-            throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API\", e");
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
     public List< Map< String, Object > > getListPeople() {
 
         // Build an URL with user id
@@ -208,6 +139,77 @@ public class FetchJsonPlaceholderUserService {
             throw e;
         }
     }
+
+
+    public JsonPlaceholderUser fetchUserById(int id) {
+
+        // Build an URL with user id
+        String url = "https://jsonplaceholder.typicode.com/users/" + id;
+
+        // Create the object RestTemplate
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            ResponseEntity< JsonPlaceholderUser > response = restTemplate.getForEntity(url, JsonPlaceholderUser.class);
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return response.getBody();
+            } else {
+                throw new JsonPlaceholderUserNotFoundException("Json placeholder user with id " + id + " not found");
+            }
+        } catch (HttpClientErrorException.NotFound e) {
+            throw new JsonPlaceholderUserNotFoundException("Json placeholder user with id " + id + " not found", e);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+    }
+
+    public List< JsonPlaceholderUser > findUserByName(String name) {
+
+        // Build an URL with user id
+        String url = "https://jsonplaceholder.typicode.com/users/";
+
+        // Create the object RestTemplate
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+            ResponseEntity< JsonPlaceholderUser[] > response = restTemplate.getForEntity(url, JsonPlaceholderUser[].class);
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                // Retrieve the array of users from response
+                JsonPlaceholderUser[] users = response.getBody();
+
+                // Convert the search name to lowercase
+                String searchName = name.toLowerCase();
+
+                // Filter users by name
+                List< JsonPlaceholderUser > matchedUsers = new ArrayList<>();
+                for (JsonPlaceholderUser user : users) {
+
+                    // Convert the user name to lowercase for case-insensitive comparison
+                    String userNameLowerCase = user.getName().toLowerCase();
+
+                    if (userNameLowerCase.contains(searchName)) {
+                        matchedUsers.add(user);
+                    }
+                }
+                return matchedUsers;
+            } else {
+                throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API");
+            }
+
+
+        } catch (HttpClientErrorException.NotFound e) {
+            throw new JsonPlaceholderUserNotFoundException("Failed to fetch users from JSONPlaceholder API\", e");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+
 
 
 }

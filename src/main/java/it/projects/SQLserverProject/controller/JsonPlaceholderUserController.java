@@ -26,6 +26,15 @@ public class JsonPlaceholderUserController {
         return ResponseEntity.accepted().body(jsonList);
     }
 
+    @GetMapping(value = "/user/get/people", produces = "application/json")
+    @ResponseBody
+    public ResponseEntity< ? > getPeople() throws JsonProcessingException{
+
+        List< Map< String, Object > > people = fetchJsonPlaceholderUserService.getListPeople();
+        return  ResponseEntity.accepted().body(people);
+
+    }
+
 
     @GetMapping(value = "/user/get/{id}", produces = "application/json")
     @ResponseBody
@@ -43,12 +52,5 @@ public class JsonPlaceholderUserController {
         return ResponseEntity.accepted().body(jsonNameSearch);
     }
 
-    @GetMapping(value = "/user/get/people", produces = "application/json")
-    @ResponseBody
-    public ResponseEntity< ? > getPeople() throws JsonProcessingException{
 
-        List< Map< String, Object > > people = fetchJsonPlaceholderUserService.getListPeople();
-        return  ResponseEntity.accepted().body(people);
-
-    }
 }
