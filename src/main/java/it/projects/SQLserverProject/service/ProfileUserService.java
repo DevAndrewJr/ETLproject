@@ -35,17 +35,32 @@ public class ProfileUserService {
                 profileUser.setName((String) userMap.get("name"));
                 profileUser.setUsername((String) userMap.get("username"));
                 profileUser.setEmail((String) userMap.get("email"));
-                profileUser.setStreet((String) userMap.get("street"));
-                profileUser.setSuite((String) userMap.get("suite"));
-                profileUser.setCity((String) userMap.get("city"));
-                profileUser.setZipcode((String) userMap.get("zipcode"));
+
+                Map<String, Object> addressMap = (Map<String, Object>) userMap.get("address");
+                if (addressMap != null) {
+                    profileUser.setStreet((String) addressMap.get("street"));
+                    profileUser.setSuite((String) addressMap.get("suite"));
+                    profileUser.setCity((String) addressMap.get("city"));
+                    profileUser.setZipcode((String) addressMap.get("zipcode"));
+                }
+
                 profileUser.setPhone((String) userMap.get("phone"));
                 profileUser.setWebsite((String) userMap.get("website"));
-                profileUser.setLat((String) userMap.get("lat"));
-                profileUser.setLng((String) userMap.get("lng"));
-                profileUser.setCompanyName((String) userMap.get("companyName"));
-                profileUser.setCompanyCatchPhrase((String) userMap.get("companyCatchPhrase"));
-                profileUser.setCompanyBs((String) userMap.get("companyBs"));
+
+
+                Map<String, Object> geoMap = (Map<String, Object>) userMap.get("geo");
+                if (geoMap != null) {
+                    profileUser.setLat((String) geoMap.get("lat"));
+                    profileUser.setLng((String) geoMap.get("lng"));
+                }
+
+
+                Map<String, Object> companyMap = (Map<String, Object>) userMap.get("company");
+                if (companyMap != null) {
+                    profileUser.setCompanyName((String) companyMap.get("name"));
+                    profileUser.setCompanyCatchPhrase((String) companyMap.get("catchPhrase"));
+                    profileUser.setCompanyBs((String) companyMap.get("bs"));
+                }
 
                 // Salva il profilo utente nel database
                 profileUserRepository.saveAndFlush(profileUser);
