@@ -14,7 +14,8 @@ import java.util.*;
 @RequestMapping("/project/api/json")
 public class ProfileUserController {
 
-    private final ProfileUserService profileUserService;
+    @Autowired
+    private ProfileUserService profileUserService;
 
     @Autowired
     public ProfileUserController(ProfileUserService profileUserService) {
