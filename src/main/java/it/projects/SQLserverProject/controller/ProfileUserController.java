@@ -17,10 +17,6 @@ public class ProfileUserController {
     @Autowired
     private ProfileUserService profileUserService;
 
-    @Autowired
-    public ProfileUserController(ProfileUserService profileUserService) {
-        this.profileUserService = profileUserService;
-    }
 
     @PostMapping(value = "/users/save", produces = "application/json")
     @ResponseBody

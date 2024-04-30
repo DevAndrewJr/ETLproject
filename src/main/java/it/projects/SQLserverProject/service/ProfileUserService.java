@@ -18,7 +18,8 @@ public class ProfileUserService {
     @Autowired
     private ProfileUserRepository profileUserRepository;
 
-    FetchJsonPlaceholderUserService fetchJsonPlaceholderUserService = new FetchJsonPlaceholderUserService();
+    @Autowired
+    FetchJsonPlaceholderUserService fetchJsonPlaceholderUserService;
 
 
     public void saveUsersToProfile() {
@@ -46,7 +47,7 @@ public class ProfileUserService {
                 profileUser.setCompanyBs((String) userMap.get("companyBs"));
 
                 // Salva il profilo utente nel database
-                profileUserRepository.save(profileUser);
+                profileUserRepository.saveAndFlush(profileUser);
             }
         } catch (Exception e) {
             e.printStackTrace();
