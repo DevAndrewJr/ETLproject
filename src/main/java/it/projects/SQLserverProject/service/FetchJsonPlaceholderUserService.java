@@ -140,7 +140,6 @@ public class FetchJsonPlaceholderUserService {
         }
     }
 
-
     public JsonPlaceholderUser fetchUserById(int id) {
 
         // Build an URL with user id
@@ -208,8 +207,4 @@ public class FetchJsonPlaceholderUserService {
             throw e;
         }
     }
-
-
-
-
 }
