@@ -19,6 +19,8 @@ public class ETLprojectApplication {
     public static void main(String[] args) {
         SpringApplication.run(ETLprojectApplication.class, args);
 
+        System.out.println("test");
+
 
     }
 }
