@@ -5,6 +5,7 @@ import it.projects.SQLserverProject.repository.*;
 import it.projects.SQLserverProject.entity.*;
 import it.projects.SQLserverProject.config.*;
 
+import org.aspectj.lang.annotation.DeclareAnnotation;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
 import org.springframework.stereotype.*;
@@ -21,9 +22,14 @@ public class ProfileUserService {
     @Autowired
     FetchJsonPlaceholderUserService fetchJsonPlaceholderUserService;
 
-
+    @Deprecated 
+    @DeclareAnnotation("This code isn't optimized")
+    /**
+     @Note: Implementare il mapping direttamente tra dto a entity
+     */
     public void saveUsersToProfile() {
         try {
+
             // Get a people list of the API call
             List< Map< String, Object > > peopleList = fetchJsonPlaceholderUserService.getListPeople();
 
